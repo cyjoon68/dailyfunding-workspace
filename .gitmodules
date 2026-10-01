@@ -1,0 +1,6 @@
+[submodule "dailyfunding-fe"]
+	path = dailyfunding-fe
+	url = https://github.com/dailyfunding-clone/dailyfunding-fe.git
+[submodule "dailyfunding-be"]
+	path = dailyfunding-be
+	url = https://github.com/dailyfunding-clone/dailyfunding-be.git
