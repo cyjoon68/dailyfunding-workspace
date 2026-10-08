@@ -9,11 +9,12 @@
 
 ```
 dailyfunding-workspace/        # 통합 워크스페이스 (문서·스크립트)
-├─ dailyfunding-fe/            # 프론트엔드 저장소 (pnpm monorepo)
-│  ├─ apps/web/                # Next.js — 투자자/대출자/운영자 웹 (단일 배포 단위)
-│  ├─ apps/mobile/             # Expo React Native — 네이티브 셸 + WebView
+├─ dailyfunding-fe/            # 프론트엔드 저장소 (pnpm workspace + turborepo)
+│  ├─ apps/fo-web/             # Next.js — 투자자/대출자 웹 + WebView 컨텐츠
+│  ├─ apps/fo-native/          # Expo React Native — 네이티브 셸 + WebView
+│  ├─ apps/bo/                 # Next.js — 어드민 백오피스
 │  └─ packages/
-│     ├─ design-system/        # panda-css 토큰·recipes·patterns
+│     ├─ design-system/        # 커스텀 토큰(scale/semantic) + React 컴포넌트
 │     ├─ bridge/               # JS↔Native 타입드 postMessage 프로토콜
 │     └─ api-client/           # OpenAPI 타입 생성 + fetch 클라이언트
 └─ dailyfunding-be/            # 백엔드 저장소 (Python)
@@ -27,21 +28,21 @@ FE/BE는 별도 저장소. 계약 동기화: BE CI가 `schema.json`을 생성해
 
 ## 2. Frontend (dailyfunding-fe)
 
-### 2.1 Web — `apps/web`
+### 2.1 Web — `apps/fo-web`
 
 | 영역 | 선택 | 근거 |
 |---|---|---|
-| 프레임워크 | Next.js 15 (App Router) | SSR로 공개 페이지 서빙, WebView에서도 HTML 우선 표시 |
+| 프레임워크 | Next.js 16 (App Router) | SSR로 공개 페이지 서빙, WebView에서도 HTML 우선 표시 |
 | 언어 | TypeScript strict | 전 영역 타입 안전 |
 | UI | React 19 | 실서비스와 동일 |
-| 클라이언트 상태 | zustand | 실서비스와 동일 |
+| 클라이언트 상태 | React state | 폼/로컬 상태만 존재 |
 | 서버 상태 | TanStack Query | 요청 캐시·낙관적 업데이트(투자 주문·장바구니) |
-| 스타일 | panda-css | 실서비스와 동일. 디자인 시스템과 동일 엔진 |
-| 폼/검증 | react-hook-form + zod | 신청 폼·주문 폼 검증 |
+| 스타일 | 커스텀 토큰 시스템 (design-system `tokens.ts` → `tokens.css` 생성) | 당근 SEED 구조 차용. scale/semantic 토큰 → CSS 변수. panda-css 대체 (번들·설정 단순화) |
+| 폼/검증 | React 19 form actions + zod | 신청 폼·주문 폼 검증 |
 | API 클라이언트 | openapi-typescript 생성 타입 + fetch 래퍼 | 스키마-타입 일치 보장 |
 | 인증 | httpOnly 쿠키 세션(JWT) + 재확인 토큰 | 2차 인증 게이트 구현 |
 
-### 2.2 Mobile — `apps/mobile`
+### 2.2 Mobile — `apps/fo-native`
 
 | 영역 | 선택 | 근거 |
 |---|---|---|
@@ -55,8 +56,9 @@ FE/BE는 별도 저장소. 계약 동기화: BE CI가 `schema.json`을 생성해
 
 ### 2.3 Design System — `packages/design-system`
 
-- panda-css: tokens(색상·간격·타이포)·recipes·patterns·조건부 스타일
-- 산출물: ① CSS/런타임 (web·WebView 공용) ② `tokens.json` → app의 네이티브 chrome(탭바·스플래시·인증 화면) 스타일 소스
+- `tokens.ts`: scale(색상·간격·타이포·radius)·semantic 매핑 → `tokens.css` 생성 스크립트
+- React 컴포넌트(Button·Field·Steps) + Storybook 카탈로그
+- 산출물: ① CSS 변수 (web·WebView 공용) ② TS 토큰 export → app 네이티브 chrome 스타일 소스
 - 웹과 앱 네이티브 UI가 같은 토큰을 참조 → 디자인 시스템 단일 소스
 
 ### 2.4 API Client — `packages/api-client`
@@ -125,7 +127,7 @@ WebhookEvent (수신 웹훅 로그, 멱등 키)
 | React · SPA | web 전체 + app WebView 콘텐츠 |
 | Next.js (SSR) | 상품 목록·상세·콘텐츠 SSR — WebView 첫 화면에도 활용 |
 | TypeScript | web·app·packages 전체 strict |
-| panda-css / CSS-in-JS | panda-css 디자인 시스템 |
+| panda-css / CSS-in-JS | 커스텀 토큰 시스템 (토큰→CSS 변수) — 번들 단순화로 대체 |
 | React Native | 네이티브 셸 앱 |
 | zustand | 클라이언트 상태 |
 | Python · Django · DRF | api 전체 |
