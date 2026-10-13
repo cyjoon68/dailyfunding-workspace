@@ -2,7 +2,7 @@
 
 - `dailyfunding-fe/` — `apps/fo-web` Next.js 16 웹 + `apps/fo-native` Expo 모바일 + `apps/bo` 어드민 (pnpm + turbo)
 - `dailyfunding-be/` — Django/DRF API + mockbank + Celery
-- `docs/` — PRD, 기능/API 명세, 스택 정의
+- `docs/` — PRD, 기능/API 명세, 스택 정의, [개발 노트](docs/dev-notes/engineering-notes.md)
 
 ## 스크린샷
 
