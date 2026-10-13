@@ -4,6 +4,28 @@
 - `dailyfunding-be/` — Django/DRF API + mockbank + Celery
 - `docs/` — PRD, 기능/API 명세, 스택 정의
 
+## 스크린샷
+
+### fo-web
+
+| 홈 | 투자 상품 | 상품 상세 |
+|---|---|---|
+| ![fo-web 홈](https://github.com/dailyfunding-clone/dailyfunding-fe/raw/develop/docs/screenshots/fo-web/home.png) | ![fo-web 투자](https://github.com/dailyfunding-clone/dailyfunding-fe/raw/develop/docs/screenshots/fo-web/investment.png) | ![fo-web 상품 상세](https://github.com/dailyfunding-clone/dailyfunding-fe/raw/develop/docs/screenshots/fo-web/investment-detail.png) |
+
+### fo-native
+
+| 앱 랜딩 | 홈 탭 | 투자 탭 |
+|---|---|---|
+| ![네이티브 랜딩](https://github.com/dailyfunding-clone/dailyfunding-fe/raw/develop/docs/screenshots/fo-native/auth-landing.png) | ![네이티브 홈](https://github.com/dailyfunding-clone/dailyfunding-fe/raw/develop/docs/screenshots/fo-native/tab-home.png) | ![네이티브 투자](https://github.com/dailyfunding-clone/dailyfunding-fe/raw/develop/docs/screenshots/fo-native/tab-investment.png) |
+
+### bo
+
+| 상품 관리 | 배치 |
+|---|---|
+| ![bo 상품](https://github.com/dailyfunding-clone/dailyfunding-fe/raw/develop/docs/screenshots/bo/products.png) | ![bo 배치](https://github.com/dailyfunding-clone/dailyfunding-fe/raw/develop/docs/screenshots/bo/batch.png) |
+
+전체 스크린샷은 `dailyfunding-fe` 레포 `docs/screenshots/`에 있다.
+
 ## 검증 스크립트
 
 | 스크립트 | 내용 |
