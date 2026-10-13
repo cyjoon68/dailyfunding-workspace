@@ -11,6 +11,7 @@ N명이 remaining < N*amount 상품에 동시 투자:
 
 import os
 import sys
+import time
 import uuid
 from concurrent.futures import ThreadPoolExecutor
 
@@ -21,26 +22,36 @@ N = int(sys.argv[1]) if len(sys.argv) > 1 else 10
 AMOUNT = int(sys.argv[2]) if len(sys.argv) > 2 else 100_000
 
 
-def req(method, path, token=None, idem=None, **kw):
+def req(method, path, session=None, idem=None, reauth=None, _retries=0, **kw):
     headers = {"Content-Type": "application/json"}
-    if token:
-        headers["Authorization"] = f"Bearer {token}"
+    if session is not None and method.upper() not in ("GET", "HEAD", "OPTIONS"):
+        csrf = session.cookies.get("csrf")
+        if csrf:
+            headers["X-CSRF-Token"] = csrf
     if idem:
         headers["Idempotency-Key"] = idem
-    return requests.request(method, f"{API}{path}", headers=headers, **kw)
+    if reauth:
+        headers["X-Reauth-Token"] = reauth
+    s = session or requests
+    r = s.request(method, f"{API}{path}", headers=headers, **kw)
+    if r.status_code == 429 and _retries < 8:
+        time.sleep(min(2.0 * (_retries + 1), 10.0))
+        return req(method, path, session, idem, reauth, _retries + 1, **kw)
+    return r
 
 
 def login(email, password):
-    r = req("POST", "/api/auth/login", json={"email": email, "password": password})
+    s = requests.Session()
+    r = req("POST", "/api/auth/login", s, json={"email": email, "password": password})
     assert r.status_code == 200, f"login {email}: {r.status_code}"
-    return r.json()["access_token"]
+    return s
 
 
 def make_user(i):
     email = f"race-{uuid.uuid4().hex[:8]}@test.com"
     password = "Test1234!"
     name = f"경합{i:02d}"
-    req(
+    r = req(
         "POST",
         "/api/auth/signup",
         json={
@@ -53,45 +64,50 @@ def make_user(i):
             ],
         },
     )
-    token = login(email, password)
-    req(
+    assert r.status_code == 201, f"signup {email}: {r.status_code} {r.text[:120]}"
+    sess = login(email, password)
+    r = req(
         "POST",
         "/api/auth/identity/verify",
-        token,
-        json={"carrier": "SKT", "name": name, "birth": "19950101", "phone": f"010{i + 10**7:08d}"},
+        sess,
+        json={
+            "carrier": "SKT",
+            "name": name,
+            "birth": "19950101",
+            "phone": f"010{uuid.uuid4().int % 10**8:08d}",
+        },
     )
-    req(
+    assert r.status_code == 200 and r.json().get("verified"), f"identity {email}: {r.status_code} {r.text[:120]}"
+    r = req(
         "POST",
         "/api/suitability-test",
-        token,
+        sess,
         json={"answers": [{"seq": s, "choice": c} for s, c in zip(range(1, 7), "XOOXOO")]},
     )
+    assert r.status_code == 200 and r.json().get("passed"), f"suitability {email}: {r.status_code} {r.text[:120]}"
     r = req(
         "POST",
         "/api/deposit/notify-intent",
-        token,
+        sess,
         idem=uuid.uuid4().hex,
         json={"sender_name": name, "amount": AMOUNT * 2},
     )
-    req("POST", "/mockbank/deposits/execute", json={"intent_id": r.json()["intent_id"]})
-    return {"token": token, "idem": uuid.uuid4().hex}
+    assert r.status_code in (200, 201, 202), f"notify-intent {email}: {r.status_code} {r.text[:120]}"
+    r = req("POST", "/mockbank/deposits/execute", json={"intent_id": r.json()["intent_id"]})
+    assert r.status_code == 200 and r.json().get("delivered"), f"deposit execute {email}: {r.status_code} {r.text[:120]}"
+    r = req("POST", "/api/auth/reauth", sess, json={"password": password})
+    assert r.status_code == 200, f"reauth {email}: {r.status_code} {r.text[:120]}"
+    return {"sess": sess, "reauth": r.json()["reauth_token"], "idem": uuid.uuid4().hex}
 
 
 def attempt(user, product_id):
-    r = req(
-        "POST",
-        "/api/investments",
-        user["token"],
+    kw = dict(
         idem=user["idem"],
+        reauth=user["reauth"],
         json={"product_id": product_id, "amount": AMOUNT, "confirm": "네"},
     )
-    replay = req(
-        "POST",
-        "/api/investments",
-        user["token"],
-        idem=user["idem"],
-        json={"product_id": product_id, "amount": AMOUNT, "confirm": "네"},
-    )
+    r = req("POST", "/api/investments", user["sess"], **kw)
+    replay = req("POST", "/api/investments", user["sess"], **kw)
     return r, replay
 
 
@@ -133,7 +149,7 @@ id_mismatch = [
     (r, rp)
     for r, rp in results
     if r.status_code == 201
-    and rp.status_code == 201
+    and rp.status_code in (200, 201)
     and rp.json().get("investment_id") != r.json().get("investment_id")
 ]
 

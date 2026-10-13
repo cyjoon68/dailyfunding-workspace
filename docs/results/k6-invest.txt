@@ -1,0 +1,434 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: scripts/load-invest.k6.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 20 max VUs, 2m30s max duration (incl. graceful stop):
+              * race: 1 iterations for each of 20 VUs (maxDuration: 2m0s, gracefulStop: 30s)
+
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+Run    [ 100% ] setup()
+race   [   0% ]
+
+running (2m08.0s), 04/20 VUs, 16 complete and 0 interrupted iterations
+race   [  80% ] 20 VUs  0m00.9s/2m0s  16/20 iters, 1 per VU
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 20      0.156/s
+    checks_succeeded...: 100.00% 20 out of 20
+    checks_failed......: 0.00%   0 out of 20
+
+    ✓ created or expected conflict
+
+    CUSTOM
+    idempotent_replay_same_id......: 18     0.1404/s
+    invest_created.................: 18     0.1404/s
+
+    HTTP
+    http_req_duration..............: avg=64.74ms  min=570µs  med=11.67ms max=1.05s p(90)=105.9ms p(95)=116.7ms 
+      { expected_response:true }...: avg=59.8ms   min=3.83ms med=11.88ms max=1.05s p(90)=105.9ms p(95)=116.38ms
+    http_req_failed................: 9.95%  20 out of 201
+    http_reqs......................: 201    1.567797/s
+
+    EXECUTION
+    iteration_duration.............: avg=296.69ms min=47.1ms med=93.8ms  max=1.06s p(90)=1.05s   p(95)=1.06s   
+    iterations.....................: 20     0.156/s
+    vus............................: 4      min=0         max=4 
+    vus_max........................: 20     min=20        max=20
+
+    NETWORK
+    data_received..................: 105 kB 815 B/s
+    data_sent......................: 192 kB 1.5 kB/s
+
+
+
+
+running (2m08.2s), 00/20 VUs, 20 complete and 0 interrupted iterations
+race ✓ [ 100% ] 20 VUs  0m01.1s/2m0s  20/20 iters, 1 per VU
